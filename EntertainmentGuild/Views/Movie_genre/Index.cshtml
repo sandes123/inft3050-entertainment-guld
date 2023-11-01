@@ -1,0 +1,116 @@
+﻿@model IEnumerable<EntertainmentGuild.Models.Movie_genre>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Dashborad</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Movie genre</a></li>
+                    <li class="breadcrumb-item active">Index</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title" style="float: left">List of Movie genre</h3>
+                        <a asp-action="Create" style="float: right;" class="btn btn-primary btn-sm">Add new Movie genre</a>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="ProDataTable" width="100%" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">Name</th>
+
+                                        <th class="text-center">Action</th>
+
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+
+                                    {
+                                        <tr>
+                                            <td>@item.Name</td>
+
+                                            <td>
+
+                                                <a asp-action="Edit" asp-route-id="@item.subGenreID" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
+                                                <a href="javascript:void(0)" onclick="Delete('@item.subGenreID')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        $('#ProDataTable').DataTable({
+            autoWidth: false,
+            columnDefs: [
+                {
+                    targets: ['_all'],
+                    className: 'mdc-data-table__cell',
+                },
+            ],
+
+        });
+
+        function Delete(id) {
+            swal({
+                title: "Are you sure?",
+                text: "You will not be able to recover this imaginary file!",
+                type: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        $.ajax({
+                            url: "/Movie_genre/DeleteConfirmed",
+                            type: "POST",
+                            data: {
+                                id: id
+                            },
+                            dataType: "json",
+                            success: function () {
+                                swal("Done!", "It was succesfully deleted!", "success");
+                                window.location.href = '../Movie_genre/Index';
+                            },
+                            error: function (xhr, ajaxOptions, thrownError) {
+                                swal("Error deleting!", "Please try again", "error");
+                            }
+                        });
+                    } else {
+                        swal("Your imaginary file is safe!");
+                    }
+                });
+        }
+    </script>
+}

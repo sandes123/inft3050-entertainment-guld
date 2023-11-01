@@ -1,0 +1,182 @@
+﻿@model EntertainmentGuild.Models.Product
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Dashborad</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#"> Product</a></li>
+                    <li class="breadcrumb-item active">Edit</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="col-md-8 offset-2">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="text-center">
+                            Update Product
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" asp-action="Edit">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="ID" />
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label class="col-sm-6 col-form-label">
+                                            Name <span class="text-danger">*</span>
+                                        </label>
+                                        <div class="col-sm-12">
+                                            <input asp-for="Name" class="form-control" required />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label class="col-sm-6 col-form-label">
+                                            Author <span class="text-danger">*</span>
+                                        </label>
+                                        <div class="col-sm-12">
+                                            <input asp-for="Author" class="form-control" required />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label class="col-sm-6 col-form-label">
+                                            Description <span class="text-danger">*</span>
+                                        </label>
+                                        <div class="col-sm-12">
+                                            <textarea asp-for="Description" class="form-control" cols="6"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label class="col-sm-6 col-form-label">
+                                            Genre <span class="text-danger">*</span>
+                                        </label>
+                                        <div class="col-sm-12">
+                                            <select asp-for="Genre" class="form-control" asp-items="ViewBag.Genre"></select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label class="col-sm-6 col-form-label">
+                                            sub Genre <span class="text-danger">*</span>
+                                        </label>
+                                        <div class="col-sm-12">
+                                            <input asp-for="subGenre" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label class="col-sm-6 col-form-label">
+                                            Published <span class="text-danger">*</span>
+                                        </label>
+                                        <div class="col-sm-12">
+                                            <input asp-for="Published" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label class="col-sm-6 col-form-label">
+                                            Last Updated By <span class="text-danger">*</span>
+                                        </label>
+                                        <div class="col-sm-12">
+                                            <select asp-for="LastUpdatedBy" class="form-control" asp-items="ViewBag.LastUpdatedBy"></select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label class="col-sm-6 col-form-label">
+                                            Last Updated <span class="text-danger">*</span>
+                                        </label>
+                                        <div class="col-sm-12">
+                                            <input asp-for="LastUpdated" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row ml-3">
+                                <div class="col-md-4">
+                                    <a class="btn btn-primary" asp-action="Index">Back to page</a>
+                                </div>
+                                <div class="col-md-2">
+                                    <input type="submit" value="Update" class="btn btn-warning" />
+
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*<h1>Edit</h1>
+
+    <h4>Product</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="ID" />
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Author" class="control-label"></label>
+                    <input asp-for="Author" class="form-control" />
+                    <span asp-validation-for="Author" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label"></label>
+                    <input asp-for="Description" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Genre" class="control-label"></label>
+                    <select asp-for="Genre" class="form-control" asp-items="ViewBag.Genre"></select>
+                    <span asp-validation-for="Genre" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="subGenre" class="control-label"></label>
+                    <input asp-for="subGenre" class="form-control" />
+                    <span asp-validation-for="subGenre" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Published" class="control-label"></label>
+                    <input asp-for="Published" class="form-control" />
+                    <span asp-validation-for="Published" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="LastUpdatedBy" class="control-label"></label>
+                    <select asp-for="LastUpdatedBy" class="form-control" asp-items="ViewBag.LastUpdatedBy"></select>
+                    <span asp-validation-for="LastUpdatedBy" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="LastUpdated" class="control-label"></label>
+                    <input asp-for="LastUpdated" class="form-control" />
+                    <span asp-validation-for="LastUpdated" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>*@
+

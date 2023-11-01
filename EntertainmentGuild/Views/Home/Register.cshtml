@@ -1,0 +1,113 @@
+﻿@model EntertainmentGuild.DTO.UserDTO
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Login.cshtml";
+}
+<div class="login-form-wrap">
+    <div class="text-center">
+        <h1 class="form-heading">Only user Register</h1>
+    </div>
+    <form class="form form-login" asp-action="Register" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div>
+
+            <div class="techno-input-group">
+                <label for="" class="techno-label">Name <span>*</span></label>
+                <div class="techno-icon-input">
+                    <span><i class="bi bi-person-circle"></i></span>
+                    <input class="form-control" asp-for="Name" placeholder="Name" autocomplete="username" aria-required="true" />
+                </div>
+                <span class="text-danger" asp-validation-for="Name"></span>
+
+            </div>
+            <div class="techno-input-group">
+                <label for="" class="techno-label">Adress <span>*</span></label>
+                <div class="techno-icon-input">
+                    <span><i class="bi bi-person-circle"></i></span>
+                    <input class="form-control" type="text" asp-for="StreetAdress" placeholder="Street Adress" autocomplete="username" aria-required="true" />
+                </div>
+                <span class="text-danger" asp-validation-for="StreetAdress"></span>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="techno-input-group">
+                        <label for="" class="techno-label">Phone Number <span>*</span></label>
+                        <div class="techno-icon-input">
+                            <span><i class="bi bi-person-circle"></i></span>
+                            <input class="form-control" type="number" asp-for="PhoneNumber" placeholder="Phone Number" autocomplete="username" aria-required="true" />
+                        </div>
+                        <span class="text-danger" asp-validation-for="PhoneNumber"></span>
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="techno-input-group">
+                        <label for="" class="techno-label">Post Code <span>*</span></label>
+                        <div class="techno-icon-input">
+                            <span><i class="bi bi-person-circle"></i></span>
+                            <input asp-for="PostalCode" type="number" class="form-control" placeholder="Pstal Code" autocomplete="username" aria-required="true" />
+                        </div>
+                        <span asp-validation-for="PostalCode" class="text-danger"></span>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="techno-input-group">
+                        <label for="" class="techno-label">State <span>*</span></label>
+                        <div class="techno-icon-input">
+                            <span><i class="bi bi-person-circle"></i></span>
+                            <select class="form-control" asp-for="State">
+                                <option value="VIC">VIC</option>
+                                <option value="NSW">NSW</option>
+                                <option value="NT">NT</option>
+                                <option value="ACT">ACT</option>
+                                <option value="TAS">TAS</option>
+                                <option value="WA">WA</option>
+                                <option value="SA">SA</option>
+                                <option value="QLD">QLD</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="techno-input-group">
+                        <label for="" class="techno-label">Suburb <span>*</span></label>
+                        <div class="techno-icon-input">
+                            <span><i class="bi bi-person-circle"></i></span>
+                            <input asp-for="Suburb" class="form-control" placeholder="Suburb" autocomplete="username" aria-required="true" />
+                        </div>
+                        <span asp-validation-for="Suburb" class="text-danger"></span>
+
+                    </div>
+                </div>
+            </div>
+            <div class="techno-input-group">
+                <label for="" class="techno-label">Email <span>*</span></label>
+                <div class="techno-icon-input">
+                    <span><i class="bi bi-person-circle"></i></span>
+                    <input class="form-control" asp-for="Email" placeholder="Email" autocomplete="username" aria-required="true" />
+                </div>
+                <span class="text-danger" asp-validation-for="Email"></span>
+            </div>
+            <div class="techno-input-group mb-4">
+                <label for="" class="techno-label">Password<span>*</span></label>
+                <div class="techno-icon-input">
+                    <span><i class="bi bi-lock"></i></span>
+                    <input class="form-control" type="password" asp-for="Password" placeholder="password" autocomplete="username" aria-required="true" />
+                </div>
+                <span class="text-danger" asp-validation-for="Password"></span>
+
+            </div>
+          
+            <div class="techno-input-group">
+                <input type="submit" class="default-button w-100 hover-button" value="Register" />
+            </div>
+           
+        </div>
+    </form>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

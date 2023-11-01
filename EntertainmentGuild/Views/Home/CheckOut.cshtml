@@ -1,0 +1,192 @@
+﻿@model EntertainmentGuild.DTO.UserDTO
+@{
+    ViewData["Title"] = "CheckOut";
+}
+
+<div class='staic-banner'>
+    <div class="container">
+        <h2>Checkout</h2>
+        <p class="Static-navigation">
+            <a href="/Home/Index">Home</a>
+            <i class="bi bi-chevron-right"></i>
+            <a>Checkout</a>
+        </p>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="container mt-4 mb-4">
+        <form  asp-action="CheckOut" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div>
+                        <h2 class="checkout-heading">Enter Shipping Detail</h2>
+                    </div>
+                    <div class="row">
+
+                        <div class="col-md-12">
+                            <div class="techno-input-group">
+                                <label for="" class="techno-label">Email<span>*</span></label>
+                                <div class="techno-icon-input">
+                                    <span><i class="bi bi-envelope"></i></span>
+                                    <input type="text" asp-for="Email" placeholder="Email" readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="techno-input-group">
+                                <label for="" class="techno-label">Postal Code<span>*</span></label>
+                                <div class="techno-icon-input">
+                                    <span><i class="bi bi-sign-turn-right-fill"></i></span>
+                                    <input type="number" asp-for="PostalCode" placeholder="Postal Code">
+                                </div>
+                                <span class="text-danger" asp-validation-for="PostalCode"></span>
+
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="techno-input-group">
+                                <label for="" class="techno-label">Subrub<span>*</span></label>
+                                <div class="techno-icon-input">
+                                    <span><i class="bi bi-sign-turn-right-fill"></i></span>
+                                    <input type="text" asp-for="Suburb" placeholder="Subrub">
+                                </div>
+                                <span class="text-danger" asp-validation-for="Suburb"></span>
+
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="techno-input-group">
+                                <label for="" class="techno-label">State<span>*</span></label>
+                                <div class="techno-icon-input">
+                                    <span><i class="bi bi-sign-turn-right-fill"></i></span>
+                                    <select class="form-control" asp-for="State">
+                                        <option value="VIC">VIC</option>
+                                        <option value="NSW">NSW</option>
+                                        <option value="NT">NT</option>
+                                        <option value="ACT">ACT</option>
+                                        <option value="TAS">TAS</option>
+                                        <option value="WA">WA</option>
+                                        <option value="SA">SA</option>
+                                        <option value="QLD">QLD</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="techno-input-group">
+                                <label for="" class="techno-label">Address<span>*</span></label>
+                                <div class="techno-icon-input">
+                                    <span><i class="bi bi-sign-turn-right-fill"></i></span>
+                                    <input type="text" asp-for="StreetAdress" placeholder="Adress">
+                                </div>
+                                <span class="text-danger" asp-validation-for="StreetAdress"></span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="mt-5">
+                        <h2 class="checkout-heading">Your Payment Method</h2>
+                    </div>
+
+                    <div>
+                        <div class="row">                          
+                            <div class="col-md-12">
+                                <div class="techno-input-group">
+                                    <label for="" class="techno-label">Card Number<span>*</span></label>
+                                    <div class="techno-icon-input">
+                                        <span><i class="bi bi-credit-card"></i></span>
+                                        <input type="text" readonly name="CardHolderNumber" placeholder="XXXX XXXX XXXX XXXX" asp-for="CardNumber">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="techno-input-group">
+                                    <label for="" class="techno-label">Name<span>*</span></label>
+                                    <div class="techno-icon-input">
+                                        <span><i class="bi bi-person"></i></span>
+                                        <input type="text"  readonly placeholder="Name on Card" asp-for="CardOwner">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="techno-input-group">
+                                    <label for="" class="techno-label">Expiry Date<span>*</span></label>
+                                    <div class="techno-icon-input">
+                                        <span><i class="bi bi-calendar"></i></span>
+                                        <input type="text" readonly  placeholder="MM/YY" asp-for="ExpiryDate" >
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="techno-input-group">
+                                    <label for="" class="techno-label">CVV Code<span>*</span></label>
+                                    <div class="techno-icon-input">
+                                        <span><i class="bi bi-code"></i></span>
+                                        <input id="cvvInput"  readonly type="text"  placeholder="CVV" asp-for="CVV">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div>
+                        <h2 class="checkout-heading">Your Billing</h2>
+
+                    </div>
+                    <div class="cart_ui_block mt-4">
+                        <div class="Billing-section">
+                            <h5>Billing</h5>
+
+                            <table class="billing-table">
+                                <tbody>
+                                    <tr>
+                                        <td>Subtotal :</td>
+                                        <td>$@ViewBag.Price</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Shipping Charge :</td>
+                                        <td>$ 10</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total :</td>
+                                        <td>$ @(ViewBag.Price + 10) </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                    <div class="col-md-12 mt-5">
+                        <div class="text-end">
+                            @if (ViewBag.CardNumber == "NotFound")
+                            {
+                                <h2 class="text-center"> Please Add first Card Info</h2>
+                            }
+                            else
+                            {
+                                <input type="submit" class=" default-button text-Uppercase hover-button" value="Order Now" />
+
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+</div>
+<br />
+<br />
+<br />
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+
+
+
+}
